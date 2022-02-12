@@ -40,7 +40,7 @@ function App() {
 
   useEffect( () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.watchPosition((position) => {
         setCoords(position.coords);
         setHeading(position.coords.heading);
         setSchutzDirection(toDegrees(bearing(Schutzi, position.coords)));
@@ -48,24 +48,34 @@ function App() {
     }
   }, []);
 
+  useEffect( () => {
+    window.addEventListener("deviceorientation", (event) => {
+      var absolute = event.absolute;
+      var alpha    = event.alpha;
+      var beta     = event.beta;
+      var gamma    = event.gamma;
+      setHeading(alpha);
+    }, true);
+  });
+
   return (
     <div className="App">
       { coords !== undefined ?
-      <div>
-        <ReactCompass direction={heading} marker={(-heading + schutzDirection) % 360} />
-        <input type="range" max="360" min="0" value={schutzDirection}
-          onChange={(e) => setSchutzDirection(parseInt(e.target.value, 10))}
-          onInput={(e) => setSchutzDirection(parseInt(e.target.value, 10))}/>
-        <input type="range" max="360" min="0" value={heading}
-          onChange={(e) => setHeading(parseInt(e.target.value, 10))}
-          onInput={(e) => setHeading(parseInt(e.target.value, 10))}/>
         <div>
-          <div> Latitude: {coords.latitude}</div>
-          <div> Longitude: {coords.longitude}</div>
-          <div> Accuracy: {coords.accuracy}</div>
-          <div> SchütziDirection: {schutzDirection}</div>
-        </div>
-      </div> : <div> Please enable geolocation!</div>
+          <ReactCompass direction={heading} marker={(-heading + schutzDirection) % 360} />
+          <input type="range" max="360" min="0" value={schutzDirection}
+                 onChange={(e) => setSchutzDirection(parseInt(e.target.value, 10))}
+                 onInput={(e) => setSchutzDirection(parseInt(e.target.value, 10))}/>
+          <input type="range" max="360" min="0" value={heading}
+                 onChange={(e) => setHeading(parseInt(e.target.value, 10))}
+                 onInput={(e) => setHeading(parseInt(e.target.value, 10))}/>
+          <div>
+            <div> Latitude: {coords.latitude}</div>
+            <div> Longitude: {coords.longitude}</div>
+            <div> Accuracy: {coords.accuracy}</div>
+            <div> SchütziDirection: {schutzDirection}</div>
+          </div>
+        </div> : <div> Please enable geolocation!</div>
       }
     </div>
   );
