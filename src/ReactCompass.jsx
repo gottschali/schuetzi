@@ -52,6 +52,7 @@ export default class ReactCompass extends React.Component {
         if (ar >= 180 && newAngle <= ar - 180) { rot += 360; }
 
         rot += newAngle - ar;
+        rot = Math.round(rot);
         this.oldAngle = rot;
 
         return rot;
@@ -64,7 +65,7 @@ export default class ReactCompass extends React.Component {
         return (
             <div className="compass">
                 <div className="compass__windrose"
-                     style={{ transform: `rotate(-${this.props.direction}deg)` }}>
+                     style={{ transform: `rotate(${this.props.direction}deg)` }}>
                     {[...Array(10)].map((k, i) => <div className="compass__mark" key={i + 1}></div>)}
 
                     <div className="compass__mark--direction-h"></div>
@@ -73,7 +74,7 @@ export default class ReactCompass extends React.Component {
 
                 <div className="compass__arrow-container">
                     <div className="compass__arrow"
-                         style={{ transform: `rotate(${(this.props.marker + 45) % 360}deg)` }}>
+                         style={{ transform: `rotate(${this.props.marker}deg)` }}>
                     </div>
 
                     <div className="compass__labels">

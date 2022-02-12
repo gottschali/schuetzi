@@ -54,7 +54,7 @@ function App() {
       var alpha    = event.alpha;
       var beta     = event.beta;
       var gamma    = event.gamma;
-      setHeading(alpha);
+      setHeading((alpha + 90) % 360 );
     }, true);
   });
 
@@ -62,7 +62,7 @@ function App() {
     <div className="App">
       { coords !== undefined ?
         <div>
-          <ReactCompass direction={heading} marker={(-heading + schutzDirection) % 360} />
+          <ReactCompass direction={heading} marker={ (schutzDirection + heading + 70) % 360} />
           <input type="range" max="360" min="0" value={schutzDirection}
                  onChange={(e) => setSchutzDirection(parseInt(e.target.value, 10))}
                  onInput={(e) => setSchutzDirection(parseInt(e.target.value, 10))}/>
@@ -74,6 +74,7 @@ function App() {
             <div> Longitude: {coords.longitude}</div>
             <div> Accuracy: {coords.accuracy}</div>
             <div> SchütziDirection: {schutzDirection}</div>
+            <div> Heading: {heading}</div>
           </div>
         </div> : <div> Please enable geolocation!</div>
       }
