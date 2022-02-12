@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/schuetzi/static/css/main.e5fed432.css",
-    "main.js": "/schuetzi/static/js/main.b9018c9e.js",
+    "main.js": "/schuetzi/static/js/main.e22f5671.js",
     "static/js/787.4ffadc24.chunk.js": "/schuetzi/static/js/787.4ffadc24.chunk.js",
     "index.html": "/schuetzi/index.html",
     "main.e5fed432.css.map": "/schuetzi/static/css/main.e5fed432.css.map",
-    "main.b9018c9e.js.map": "/schuetzi/static/js/main.b9018c9e.js.map",
+    "main.e22f5671.js.map": "/schuetzi/static/js/main.e22f5671.js.map",
     "787.4ffadc24.chunk.js.map": "/schuetzi/static/js/787.4ffadc24.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e5fed432.css",
-    "static/js/main.b9018c9e.js"
+    "static/js/main.e22f5671.js"
   ]
 }
