@@ -1,6 +1,11 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Portforward to debug the website on a mobile device over USB.
+`adb reverse tcp:3000 tcp:3000`
+
+Device orientation
+https://developers.google.com/web/fundamentals/native-hardware/device-orientation/
+Seems inaccurate
 
 ## Available Scripts
 
